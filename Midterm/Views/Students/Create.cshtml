@@ -1,0 +1,79 @@
+﻿@model Student
+@*Generated from Custom Template.*@
+@*Model namespace using directive should be added to _ViewImports.cshtml.*@
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Create">
+		@Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="row mb-3">
+                <label asp-for="Name" class="col-2 col-form-label"></label>
+				<div class="col-5">
+					<input asp-for="Name" class="form-control" />
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="Surname" class="col-2 col-form-label"></label>
+				<div class="col-5">
+					<input asp-for="Surname" class="form-control" />
+					<span asp-validation-for="Surname" class="text-danger"></span>
+				</div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="UniversityExamRank" class="col-2 col-form-label"></label>
+				<div class="col-5">
+					<input asp-for="UniversityExamRank" class="form-control" />
+					<span asp-validation-for="UniversityExamRank" class="text-danger"></span>
+				</div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="CumulativeGpa" class="col-2 col-form-label"></label>
+				<div class="col-5">
+					<input asp-for="CumulativeGpa" class="form-control" />
+					<span asp-validation-for="CumulativeGpa" class="text-danger"></span>
+				</div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="GradeId" class="col-2 col-form-label"></label>
+				<div class="col-5">
+					<select asp-for="GradeId" class="form-select" asp-items="ViewBag.GradeId">
+						<option value="">-- Select --</option>
+					</select>
+					<span asp-validation-for="GradeId" class="text-danger"></span>
+				</div>
+            </div>
+            <div class="row mb-3">
+				<div class="offset-2 col-5">
+					<input type="submit" value="Save" class="btn btn-primary" />
+					&nbsp;&nbsp;
+                    <button type="reset" class="btn btn-outline-primary">Reset</button>
+					&nbsp;&nbsp;
+					<a asp-action="Index">Back to List</a>
+				</div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
