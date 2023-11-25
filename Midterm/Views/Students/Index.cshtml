@@ -1,6 +1,4 @@
 ﻿@model IEnumerable<Student>
-@*Generated from Custom Template.*@
-@*Model namespace using directive should be added to _ViewImports.cshtml.*@
 
 @{
     Layout = null;
@@ -12,63 +10,66 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Include any additional CSS files if needed -->
 </head>
 <body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+    <div class="container mt-4">
+        <p>
+            <a class="btn btn-primary" asp-action="Create">Create New</a>
+        </p>
 
+        @if (Model is not null)
+        {
+            <p class="text-success">@Model.Count() record(s) found.</p>
+        }
 
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FullNameOutput)
+                    </th>
 
-    @if (Model is not null)
-    {
-        <p class="text-success">@Model.Count() record(s) found.</p>
-    }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FullNameOutput)
-            </th>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.UniversityExamRank)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CumulativeGpa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GradeOutput)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-		@foreach (var item in Model) {
-				<tr>
-					<td>
-						@Html.DisplayFor(modelItem => item.FullNameOutput)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.UniversityExamRank)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.CumulativeGpa)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.GradeOutput)
-					</td>
-					<td>
-						<a asp-action="Details" asp-route-id="@item.Id">Details</a>&nbsp;|&nbsp;
-						<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>&nbsp;|&nbsp;
-						<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-					</td>
-				</tr>
-		}
-    </tbody>
-</table>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UniversityExamRank)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CumulativeGpa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GradeOutput)
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullNameOutput)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UniversityExamRank)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CumulativeGpa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GradeOutput)
+                        </td>
+                        <td>
+                            <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    
 </body>
 </html>
-
-
-
