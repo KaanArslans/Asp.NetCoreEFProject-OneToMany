@@ -6,17 +6,12 @@ using MySqlX.XDevAPI.Common;
 
 namespace Business;
 
-/// <summary>
-/// Performs user CRUD operations.
-/// </summary>
+
 public interface IStudentService
 {
     // method definitions: method definitions must be created here in order to be used in the related controller
 
-    /// <summary>
-    /// Queries the records in the Users table.
-    /// </summary>
-    /// <returns></returns>
+    
     IQueryable<Business.Models.Student> Query();
     bool Add(Models.Student model);
 
@@ -33,9 +28,7 @@ public class StudentService : IStudentService // UserService is a IUserService (
     #region Db Constructor Injection
     private readonly Db _db;
 
-    // An object of type Db which inherits from DbContext class is
-    // injected to this class through the constructor therefore
-    // user CRUD and other operations can be performed with this object.
+   
     public StudentService(Db db)
     {
         _db = db;
