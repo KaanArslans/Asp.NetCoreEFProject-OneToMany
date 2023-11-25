@@ -45,19 +45,11 @@ public class StudentService : IStudentService // UserService is a IUserService (
     // method implementations of the method definitions in the interface
     public IQueryable<Models.Student> Query()
     {
-        // Query method will be used for generating SQL queries without executing them.
-        // From the Users DbSet first order records by IsActive data descending
-        // then for records with same IsActive data order UserName ascending
-        // then for each element in the User entity collection map user entity
-        // properties to the desired user model properties (projection) and return the query.
-        // In Entity Framework Core, lazy loading (loading related data automatically without the need to include it) 
-        // is not active by default if projection is not used. To use eager loading (loading related data 
-        // on-demand with include), you can write the desired related entity property on the DbSet retrieved from 
-        // the _db using the Include method either through a lambda expression or a string. If you want to include 
-        // the related entity property of the included entity, you should write it through a delegate of type
-        // included entity in the ThenInclude method. However, if the ThenInclude method is to be used, 
-        // a lambda expression should be used in the Include method.
+        // Order the records as specified: descending by CumulativeGpa, then ascending by Name, and finally ascending by Surname
         return _db.Students.Include(e => e.Grade)
+            .OrderByDescending(e => e.CumulativeGpa)
+            .ThenBy(e => e.Name)
+            .ThenBy(e => e.Surname)
             .Select(e => new Models.Student()
             {
                 // model - entity property assignments
@@ -68,7 +60,7 @@ public class StudentService : IStudentService // UserService is a IUserService (
                 CumulativeGpa = e.CumulativeGpa,
                 GradeId = e.GradeId,
                 // modified model - entity property assignments for displaying in views
-                FullNameOutput= e.Name + " " + e.Surname,
+                FullNameOutput = e.Name + " " + e.Surname,
                 GradeOutput = e.Grade.Year
             });
     }
