@@ -5,7 +5,7 @@ using Business.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddDbContext<Db>(options => options.UseSqlServer("server=(localdb)\\mssqllocaldb;database=StDB;trusted_connection=true;"));
 
 builder.Services.AddScoped<IGradeService, GradeService>();
